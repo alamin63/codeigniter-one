@@ -34,9 +34,16 @@ class Backend extends CI_Controller {
 		$this->load->view('backend/index', $data);
 	}
 
-	public function category(){
+	public function add_category(){
 		$data = array();
-		$data['main_content'] = $this->load->view('backend/category', '', TRUE);
+		$data['main_content'] = $this->load->view('backend/add_category', '', TRUE);
+		$this->load->view('backend/index', $data);
+	}
+
+	public function manage_category(){
+		$data = array();
+		$data['all_category_info'] = $this->custom_model->manage_category_info();
+		$data['main_content'] = $this->load->view('backend/manage_category', $data, TRUE);
 		$this->load->view('backend/index', $data);
 	}
 
@@ -50,6 +57,28 @@ class Backend extends CI_Controller {
 		$data = array();
 		$data['main_content'] = $this->load->view('backend/footer_color', '', TRUE);
 		$this->load->view('backend/index', $data);
+	}
+
+	public function save_category(){
+		$this->custom_model->save_category();
+		$sdata = array();
+		$sdata['message'] = 'Category Insert Successfully.';
+		$this->session->set_userdata($sdata);
+		redirect('add-category');
+	}
+
+	public function edit_category($category_id){
+		$data = array();
+		$data['data_by_id'] = $this->custom_model->edit_category_by_id($category_id);
+		$data['main_content'] = $this->load->view('backend/edit_category', $data, TRUE);
+		$this->load->view('backend/index', $data);
+	}
+
+	public function update_category(){
+		$this->custom_model->update_category_by_id();
+		$sdata['message'] = "Category Successfully Updated.";
+		$this->session->set_userdata($sdata);
+		redirect('manage-category');
 	}
 
 }

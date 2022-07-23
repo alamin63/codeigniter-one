@@ -67,10 +67,21 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url();?>category">
+            <a class="nav-link" data-toggle="collapse" href="#category" aria-expanded="false" aria-controls="ui-basic">
               <i class="mdi mdi-contacts menu-icon"></i>
               <span class="menu-title">Category</span>
+              <i class="menu-arrow"></i>
             </a>
+            <div class="collapse" id="category">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="<?php echo base_url();?>add-category">Add Category</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="<?php echo base_url();?>manage-category">Manage Category</a>
+                </li>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#admin" aria-expanded="false" aria-controls="ui-basic">
