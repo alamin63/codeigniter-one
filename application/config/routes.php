@@ -7,7 +7,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
-//Backend Custom Route
+//Backend Custom Route for dashboard template mastaring
 $route['dashboard'] 		= 'Backend';
 $route['add-post'] 			= 'Backend/add_post';
 $route['all-post'] 			= 'Backend/all_post';
@@ -18,10 +18,11 @@ $route['manage-category'] 	= 'Backend/manage_category';
 $route['logo-change'] 		= 'Backend/logo_change';
 $route['footer-color-change'] = 'Backend/footer_color_change';
 
-$route['save-category']		= 'Backend/save_category';
-$route['edit-category/(.+)']= 'Backend/edit_category/$1';
-$route['update-category']	= 'Backend/update_category';
-
+//Backend dynamic route
+$route['save-category']	= 'Backend/save_category';
+$route['edit-category/(.+)']	= 'Backend/edit_category/$1';
+$route['update-category']= 'Backend/update_category';
+$route['delete-category/(.+)']= 'Backend/delete_category/$1';
 
 //Frontend Custom Route
 $route['blog']		= 'Frontend/single_page';

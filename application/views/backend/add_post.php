@@ -29,8 +29,10 @@
 	                      <div class="form-group">
 	                        <label for="exampleSelectGender">Category</label>
 	                        <select class="form-control" id="exampleSelectGender">
-	                          <option>Category One</option>
-	                          <option>Category Two</option>
+	                          <option value="">Choose Category ...</option>
+	                          <?php foreach ($category_info as $category) { ?>
+	                          <option value="<?php echo $category->category_id; ?>"><?php echo $category->category_name; ?></option>
+	                          <?php } ?>
 	                        </select>
 	                      </div>
 	                      <div class="form-group">

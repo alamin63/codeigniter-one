@@ -12,7 +12,8 @@ class Backend extends CI_Controller {
 
 	public function add_post(){
 		$data = array();
-		$data['main_content'] = $this->load->view('backend/add_post', '', TRUE);
+		$data['category_info'] = $this->custom_model->manage_category_info();
+		$data['main_content'] = $this->load->view('backend/add_post', $data, TRUE);
 		$this->load->view('backend/index', $data);
 	}
 
@@ -42,7 +43,7 @@ class Backend extends CI_Controller {
 
 	public function manage_category(){
 		$data = array();
-		$data['all_category_info'] = $this->custom_model->manage_category_info();
+		$data['category_info'] = $this->custom_model->manage_category_info();
 		$data['main_content'] = $this->load->view('backend/manage_category', $data, TRUE);
 		$this->load->view('backend/index', $data);
 	}
@@ -60,25 +61,33 @@ class Backend extends CI_Controller {
 	}
 
 	public function save_category(){
-		$this->custom_model->save_category();
+		$this->custom_model->save_category_info();
 		$sdata = array();
-		$sdata['message'] = 'Category Insert Successfully.';
+		$sdata['message'] = "Successfully Inserted Category.";
 		$this->session->set_userdata($sdata);
 		redirect('add-category');
 	}
 
-	public function edit_category($category_id){
+	public function edit_category($id){
 		$data = array();
-		$data['data_by_id'] = $this->custom_model->edit_category_by_id($category_id);
+		$data['category_id_info'] = $this->custom_model->edit_category_by_id($id);
 		$data['main_content'] = $this->load->view('backend/edit_category', $data, TRUE);
 		$this->load->view('backend/index', $data);
 	}
 
 	public function update_category(){
 		$this->custom_model->update_category_by_id();
-		$sdata['message'] = "Category Successfully Updated.";
+		$sdata = array();
+		$sdata['message'] = "Data updated successfully.";
+		$this->session->set_userdata($sdata);
+		redirect ('manage-category');
+	}
+
+	public function delete_category($id){
+		$this->custom_model->delete_category_by_id($id);
+		$sdata = array();
+		$sdata['message'] = "Delete Category Successfully.";
 		$this->session->set_userdata($sdata);
 		redirect('manage-category');
 	}
-
 }
